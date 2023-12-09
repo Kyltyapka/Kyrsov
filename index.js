@@ -34,26 +34,25 @@ app.get("/", (req, res) => {
 });
 
 // Шлях до сторінки з оглядами фільмів
+// Шлях до сторінки з оглядами фільмів
 app.get("/movie_review", async (req, res) => {
   try {
-
     const { title, reviewers, release_date_from, release_date_to, rating_from, rating_to } = req.query;
 
     // Викликаємо маршрут для фільтрації оглядів та передаємо параметри
-   
-const response = await fetch(`http://localhost:3000/api/review/filter?title=${title}&reviewers=${reviewers}&release_date_from=${release_date_from}&release_date_to=${release_date_to}&rating_from=${rating_from}&rating_to=${rating_to}`);
-
+    const response = await fetch(`http://localhost:3000/api/reviews/filter?title=${title}&reviewers=${reviewers}&release_date_from=${release_date_from}&release_date_to=${release_date_to}&rating_from=${rating_from}&rating_to=${rating_to}`);
     
     const filteredReviews = await response.json();
 
-    
-    res.render('movie_review', { reviews: filteredReviews });
+    // Передайте filteredReviews як локаль у функцію res.render
+    res.render('movie_review', { filteredReviews: filteredReviews });
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
 });
-1
+
+
 
 // Шлях до сторінки зі збіркою фільмів
 app.get("/collection", (req, res) => {

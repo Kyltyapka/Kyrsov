@@ -1,552 +1,385 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="/global.css" />
-    <link rel="stylesheet" href="/index.css" />
-    <link rel="stylesheet" href="/movreview.css" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500&display=swap"
-    />
-  </head>
-  <body>
-    <div class="fffffff">
-        <%- include ('part/header.ejs') %>
-        
+  <link rel="stylesheet" href="/global.css" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="/movreview.css" />
 
-<form action="/api/reviews/filter" method="GET">
-  
-    
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500&display=swap" />
+</head>
 
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title">
+<body>
+  <div class="fffffff">
+    <%- include ('part/header.ejs') %>
 
-    <label for="reviewers">Reviewers:</label>
-    <input type="text" id="reviewers" name="reviewers">
 
-    <label for="release_date_from">Release Date from:</label>
-    <input type="date" id="release_date_from" name="release_date_from">
+      <form action="/api/review/filter" method="GET">
 
-    <label for="release_date_to">Release Date to:</label>
-    <input type="date" id="release_date_to" name="release_date_to">
 
-    <label for="rating_from">Rating from:</label>
-    <input type="number" id="rating_from" name="rating_from" step="0.1">
 
-    <label for="rating_to">Rating to:</label>
-    <input type="number" id="rating_to" name="rating_to" step="0.1">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
 
-    
+        <label for="reviewers">Reviewers:</label>
+        <input type="text" id="reviewers" name="reviewers">
 
-    <button type="submit">Filter</button>
-  
-</form>
-<div class="frame1">
-  <div class="frame4">
-    
-    <% if (filteredReviews && filteredReviews.length > 0) { %>
-      <% filteredReviews.forEach(review => { %>
-        <div class="frame-parent4">
-          <div class="frame-wrapper">
-            <div class="frame8">
-              <img class="image-3-icon" alt="" src="<%= review.imagePath %>"/>
-              <div class="green-light-parent">
-                <div class="search">Green light</div>
-                <div class="frame9">
-                  <div class="search"><%= review.reviewer %></div>
-                  
-                  <img class="stars-icon" alt="" src="./public/stars.svg"/>
+        <label for="release_date_from">Release Date from:</label>
+        <input type="date" id="release_date_from" name="release_date_from">
+
+        <label for="release_date_to">Release Date to:</label>
+        <input type="date" id="release_date_to" name="release_date_to">
+
+        <label for="rating_from">Rating from:</label>
+        <input type="number" id="rating_from" name="rating_from" step="0.1">
+
+        <label for="rating_to">Rating to:</label>
+        <input type="number" id="rating_to" name="rating_to" step="0.1">
+
+
+
+        <button type="submit">Filter</button>
+
+      </form>
+      <div class="frame1">
+        <div class="frame4">
+
+          <% if (filteredReviews && filteredReviews.length> 0) { %>
+            <% filteredReviews.forEach(review=> { %>
+              <div class="frame-parent4">
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="<%= review.imagePath %>" />
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">
+                          <%= review.reviewer %>
+                        </div>
+
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+              <% }); %>
+                <% } else { %>
+                  <p>No reviews found.</p>
+                  <% } %>
         </div>
-      <% }); %>
-    <% } else { %>
-      <p>No reviews found.</p>
-    <% } %>
-  </div>
-</div>
+      </div>
 
 
 
 
 
-        <div class="frame1">
-          <div class="frame4">
-            <div class="frame5">
-              <div class="search-parent">
-                <div class="search">search...</div>
-                <img class="search-2-icon" alt="" src="./public/search-2.svg" />
-              </div>
-              <div class="frame-parent">
-                <div class="film-parent">
-                  <div class="search">Film</div>
-                  <div class="search">Series</div>
-                  <div class="search">Cartoon</div>
-                  <div class="search">Cartoon series</div>
-                  <div class="search">Anime</div>
-                </div>
-                <img class="frame-inner" alt="" src="./public/line-6.svg" />
-              </div>
+      <div class="frame1">
+        <div class="frame4">
+          <div class="frame5">
+            <div class="search-parent">
+              <div class="search">search...</div>
+              <img class="search-2-icon" alt="" src="./public/search-2.svg" />
             </div>
-            <div class="frame6">
-              <div class="frame-group">
-                <div class="frame-container">
-                  <div class="title-parent">
-                    <div class="search">Title</div>
-                    <div class="rectangle-div"></div>
-                  </div>
-                  <div class="title-parent">
-                    <div class="search">Reviewers</div>
-                    <div class="rectangle-div"></div>
-                  </div>
-                </div>
-                <div class="frame-div">
-                  <div class="release-data-parent">
-                    <div class="search">Release data</div>
-                    <div class="frame-parent1">
-                      <div class="parent">
-                        <div class="search">2022</div>
-                        <img
-                          class="angle-small-down-1-icon"
-                          alt=""
-                          src="./public/anglesmalldown-1.svg"
-                        />
-                      </div>
-                      <div class="search">to</div>
-                      <img
-                        class="frame-icon"
-                        alt=""
-                        src="./public/frame-51.svg"
-                      />
-                    </div>
-                  </div>
-                  <div class="release-data-parent">
-                    <div class="search">Rating</div>
-                    <div class="frame-parent1">
-                      <div class="parent">
-                        <div class="search">2022</div>
-                        <img
-                          class="angle-small-down-1-icon"
-                          alt=""
-                          src="./public/anglesmalldown-1.svg"
-                        />
-                      </div>
-                      <div class="search">to</div>
-                      <img
-                        class="frame-icon"
-                        alt=""
-                        src="./public/frame-51.svg"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-container">
-                  <div class="title-parent">
-                    <div class="search">Order by</div>
-                    <div class="rectangle-div"></div>
-                  </div>
-                  <div class="title-parent">
-                    <div class="search">Genres</div>
-                    <div class="rectangle-div"></div>
-                  </div>
-                </div>
+            <div class="frame-parent">
+              <div class="film-parent">
+                <div class="search">Film</div>
+                <div class="search">Series</div>
+                <div class="search">Cartoon</div>
+                <div class="search">Cartoon series</div>
+                <div class="search">Anime</div>
               </div>
-              <div class="frame7">
-                <div class="frame-parent4">
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-parent4">
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-wrapper">
-                    <div class="frame8">
-                      <img
-                        class="image-3-icon"
-                        alt=""
-                        src="./public/image-3@2x.png"
-                      />
-  
-                      <div class="green-light-parent">
-                        <div class="search">Green light</div>
-                        <div class="frame9">
-                          <div class="search">Peyton Robinson</div>
-                          <img
-                            class="stars-icon"
-                            alt=""
-                            src="./public/stars.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img class="frame-inner" alt="" src="./public/line-6.svg" />
             </div>
           </div>
-        </div>
-        <div class="frame24">
-          <div class="frame-parent6">
-            <div class="frame25">
-              <div class="vector-parent">
-                <img class="line-icon" alt="" src="./public/line-5.svg" />
-  
-                <div class="popular-review">Popular review</div>
+          <div class="frame6">
+            <div class="frame-group">
+              <div class="frame-container">
+                <div class="title-parent">
+                  <div class="search">Title</div>
+                  <div class="rectangle-div"></div>
+                </div>
+                <div class="title-parent">
+                  <div class="search">Reviewers</div>
+                  <div class="rectangle-div"></div>
+                </div>
               </div>
-              <div class="frame-parent7">
-                <div class="frame-parent8">
-                  <div class="image-3-parent">
-                    <img
-                      class="image-3-icon"
-                      alt=""
-                      src="./public/image-31@2x.png"
-                    />
-  
-                    <img
-                      class="rectangle-icon"
-                      alt=""
-                      src="./public/rectangle-10.svg"
-                    />
+              <div class="frame-div">
+                <div class="release-data-parent">
+                  <div class="search">Release data</div>
+                  <div class="frame-parent1">
+                    <div class="parent">
+                      <div class="search">2022</div>
+                      <img class="angle-small-down-1-icon" alt="" src="./public/anglesmalldown-1.svg" />
+                    </div>
+                    <div class="search">to</div>
+                    <img class="frame-icon" alt="" src="./public/frame-51.svg" />
                   </div>
-                  <div class="fantasy">Fantasy</div>
                 </div>
-                <div class="frame-parent8">
-                  <div class="image-3-group">
-                    <img
-                      class="image-3-icon"
-                      alt=""
-                      src="./public/image-31@2x.png"
-                    />
-  
-                    <img
-                      class="rectangle-icon"
-                      alt=""
-                      src="./public/rectangle-10.svg"
-                    />
+                <div class="release-data-parent">
+                  <div class="search">Rating</div>
+                  <div class="frame-parent1">
+                    <div class="parent">
+                      <div class="search">2022</div>
+                      <img class="angle-small-down-1-icon" alt="" src="./public/anglesmalldown-1.svg" />
+                    </div>
+                    <div class="search">to</div>
+                    <img class="frame-icon" alt="" src="./public/frame-51.svg" />
                   </div>
-                  <div class="fantasy1">Fantasy</div>
                 </div>
-                <div class="frame-parent8">
-                  <div class="image-3-group">
-                    <img
-                      class="image-3-icon"
-                      alt=""
-                      src="./public/image-31@2x.png"
-                    />
-  
-                    <img
-                      class="rectangle-icon"
-                      alt=""
-                      src="./public/rectangle-10.svg"
-                    />
-                  </div>
-                  <div class="fantasy1">Fantasy</div>
+              </div>
+              <div class="frame-container">
+                <div class="title-parent">
+                  <div class="search">Order by</div>
+                  <div class="rectangle-div"></div>
                 </div>
-                <div class="frame-parent8">
-                  <div class="image-3-group">
-                    <img
-                      class="image-3-icon"
-                      alt=""
-                      src="./public/image-31@2x.png"
-                    />
-  
-                    <img
-                      class="rectangle-icon"
-                      alt=""
-                      src="./public/rectangle-10.svg"
-                    />
-                  </div>
-                  <div class="fantasy1">Fantasy</div>
-                </div>
-                <div class="frame-parent8">
-                  <div class="image-3-group">
-                    <img
-                      class="image-3-icon"
-                      alt=""
-                      src="./public/image-31@2x.png"
-                    />
-  
-                    <img
-                      class="rectangle-icon"
-                      alt=""
-                      src="./public/rectangle-10.svg"
-                    />
-                  </div>
-                  <div class="fantasy1">Fantasy</div>
+                <div class="title-parent">
+                  <div class="search">Genres</div>
+                  <div class="rectangle-div"></div>
                 </div>
               </div>
             </div>
-            <div class="frame-parent7">
-              <div class="frame-parent8">
-                <div class="image-3-group">
-                  <img
-                    class="image-3-icon"
-                    alt=""
-                    src="./public/image-31@2x.png"
-                  />
-  
-                  <img
-                    class="rectangle-icon"
-                    alt=""
-                    src="./public/rectangle-10.svg"
-                  />
+            <div class="frame7">
+              <div class="frame-parent4">
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="fantasy1">Fantasy</div>
-              </div>
-              <div class="frame-parent8">
-                <div class="image-3-group">
-                  <img
-                    class="image-3-icon"
-                    alt=""
-                    src="./public/image-31@2x.png"
-                  />
-  
-                  <img
-                    class="rectangle-icon"
-                    alt=""
-                    src="./public/rectangle-10.svg"
-                  />
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="fantasy1">Fantasy</div>
-              </div>
-              <div class="frame-parent8">
-                <div class="image-3-group">
-                  <img
-                    class="image-3-icon"
-                    alt=""
-                    src="./public/image-31@2x.png"
-                  />
-  
-                  <img
-                    class="rectangle-icon"
-                    alt=""
-                    src="./public/rectangle-10.svg"
-                  />
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="fantasy1">Fantasy</div>
-              </div>
-              <div class="frame-parent8">
-                <div class="image-3-group">
-                  <img
-                    class="image-3-icon"
-                    alt=""
-                    src="./public/image-31@2x.png"
-                  />
-  
-                  <img
-                    class="rectangle-icon"
-                    alt=""
-                    src="./public/rectangle-10.svg"
-                  />
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="fantasy1">Fantasy</div>
               </div>
-              <div class="frame-parent8">
-                <div class="image-3-group">
-                  <img
-                    class="image-3-icon"
-                    alt=""
-                    src="./public/image-31@2x.png"
-                  />
-  
-                  <img
-                    class="rectangle-icon"
-                    alt=""
-                    src="./public/rectangle-10.svg"
-                  />
+              <div class="frame-parent4">
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="fantasy1">Fantasy</div>
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-wrapper">
+                  <div class="frame8">
+                    <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+
+                    <div class="green-light-parent">
+                      <div class="search">Green light</div>
+                      <div class="frame9">
+                        <div class="search">Peyton Robinson</div>
+                        <img class="stars-icon" alt="" src="./public/stars.svg" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="frame-parent19">
-            <div class="group-parent1">
-              <img class="group-icon" alt="" src="./public/group-881.svg" />
-  
-              <div class="search">MovRev</div>
-            </div>
-            <img class="frame-child14" alt="" src="./public/group-93.svg" />
-  
-            <div class="movie-reviews-group">
-              <div class="search">Movie Reviews</div>
-              <div class="search">Collection</div>
-              <div class="search">Interviews</div>
-              <div class="search">News</div>
             </div>
           </div>
         </div>
       </div>
-        
-        
-</div>
-    <script>
-      var movieReviewsText = document.getElementById("movieReviewsText");
-      if (movieReviewsText) {
-        movieReviewsText.addEventListener("click", function (e) {
-          
-        });
-      }
-      </script>
-  </body>
+      <div class="frame24">
+        <div class="frame-parent6">
+          <div class="frame25">
+            <div class="vector-parent">
+              <img class="line-icon" alt="" src="./public/line-5.svg" />
+
+              <div class="popular-review">Popular review</div>
+            </div>
+            <div class="frame-parent7">
+              <div class="frame-parent8">
+                <div class="image-3-parent">
+                  <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                  <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+                </div>
+                <div class="fantasy">Fantasy</div>
+              </div>
+              <div class="frame-parent8">
+                <div class="image-3-group">
+                  <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                  <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+                </div>
+                <div class="fantasy1">Fantasy</div>
+              </div>
+              <div class="frame-parent8">
+                <div class="image-3-group">
+                  <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                  <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+                </div>
+                <div class="fantasy1">Fantasy</div>
+              </div>
+              <div class="frame-parent8">
+                <div class="image-3-group">
+                  <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                  <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+                </div>
+                <div class="fantasy1">Fantasy</div>
+              </div>
+              <div class="frame-parent8">
+                <div class="image-3-group">
+                  <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                  <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+                </div>
+                <div class="fantasy1">Fantasy</div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-parent7">
+            <div class="frame-parent8">
+              <div class="image-3-group">
+                <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+              </div>
+              <div class="fantasy1">Fantasy</div>
+            </div>
+            <div class="frame-parent8">
+              <div class="image-3-group">
+                <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+              </div>
+              <div class="fantasy1">Fantasy</div>
+            </div>
+            <div class="frame-parent8">
+              <div class="image-3-group">
+                <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+              </div>
+              <div class="fantasy1">Fantasy</div>
+            </div>
+            <div class="frame-parent8">
+              <div class="image-3-group">
+                <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+              </div>
+              <div class="fantasy1">Fantasy</div>
+            </div>
+            <div class="frame-parent8">
+              <div class="image-3-group">
+                <img class="image-3-icon" alt="" src="./public/image-31@2x.png" />
+
+                <img class="rectangle-icon" alt="" src="./public/rectangle-10.svg" />
+              </div>
+              <div class="fantasy1">Fantasy</div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-parent19">
+          <div class="group-parent1">
+            <img class="group-icon" alt="" src="./public/group-881.svg" />
+
+            <div class="search">MovRev</div>
+          </div>
+          <img class="frame-child14" alt="" src="./public/group-93.svg" />
+
+          <div class="movie-reviews-group">
+            <div class="search">Movie Reviews</div>
+            <div class="search">Collection</div>
+            <div class="search">Interviews</div>
+            <div class="search">News</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  </div>
+  <script>
+    var movieReviewsText = document.getElementById("movieReviewsText");
+    if (movieReviewsText) {
+      movieReviewsText.addEventListener("click", function (e) {
+
+      });
+    }
+  </script>
+</body>
+
 </html>
